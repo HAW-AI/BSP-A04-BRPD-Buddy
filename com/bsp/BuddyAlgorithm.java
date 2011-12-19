@@ -44,7 +44,10 @@ public class BuddyAlgorithm {
 		
 		return result.toString();
 	}
-	
+	/**
+	 * @param neededMemorySpace
+	 * @return the starting address of the allocated block
+	 */
 	public int allocate(int neededMemorySpace) {
 		int result = -1;
 		
@@ -80,12 +83,15 @@ public class BuddyAlgorithm {
 			}
 
 			objectCounter++;
-			result = objectCounter;
+			result = i;
 		}
 		
 		return result;
 	}
-	
+	/**
+	 * @param address from which the free method should start to try to free the memory block
+	 * @return true if the block is allocatable again, else false
+	 */
 	public boolean free(int address) {
 		boolean result = false;
 		
