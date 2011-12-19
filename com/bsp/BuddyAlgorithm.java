@@ -6,7 +6,7 @@ public class BuddyAlgorithm {
 	private int[] memory;
 	private int objectCounter ;
 
-	private BuddyAlgorithm(Integer blocksize, Integer memorysize) {
+	private BuddyAlgorithm(Integer memorysize) {
 		this.objectCounter = 0;
 		this.memory = new int[memorysize];
 		// initialize the empty memory with -1
@@ -15,11 +15,34 @@ public class BuddyAlgorithm {
 		}
 	}
 
-	public static BuddyAlgorithm create(Integer blocksize, Integer memorysize) {
-		if (blocksize > memorysize || memorysize == 0 || blocksize == 0) {
+	public static BuddyAlgorithm create(Integer memorysize) {
+		if (memorysize == 0) {
 			throw new IllegalArgumentException();
 		}
-		return new BuddyAlgorithm(blocksize, memorysize);
+		return new BuddyAlgorithm(memorysize);
+	}
+	
+	public String toString() {
+		StringBuilder result = new StringBuilder();
+		
+		int allocatedCounter = 0;
+		for (int i : memory) {
+			if (i != -1) {
+				result.append(i);
+				allocatedCounter++;
+			}
+			else {
+				result.append("#");
+			}
+		}
+		
+		result.append(" Allocated Bytes: ");
+		result.append(allocatedCounter);
+		result.append(" Of: ");
+		result.append(memory.length);
+		result.append(" Available Bytes.\n");
+		
+		return result.toString();
 	}
 	
 	public int allocate(int neededMemorySpace) {
@@ -48,8 +71,11 @@ public class BuddyAlgorithm {
 			}
 		}
 		
+		//get to the correct index
+		i--;
+		
 		if (!alreadyAllocated) {
-			for (int j = i-neededBlockSize; j <= i ; j++) {
+			for (int j = i; j < memory.length && j < neededBlockSize ; j++) {
 				memory[j] = objectCounter;
 			}
 			objectCounter++;
@@ -91,6 +117,4 @@ public class BuddyAlgorithm {
 		}
 		return result;
 	}
-	
-	
 }
