@@ -55,10 +55,10 @@ public class BuddyAlgorithm {
 		
 		int i;
 		boolean alreadyAllocated = true;
-		for (i = 0; i < memory.length && i+neededBlockSize < memory.length && alreadyAllocated; i++) {
+		for (i = 0; i < memory.length && alreadyAllocated; i++) {
 			alreadyAllocated = true;
 			// if the the beginning and end of the memoryspace we want to allocate is avaible
-			if (memory[i] == -1 && memory[i+neededBlockSize] == -1) {
+			if (memory[i] == -1) {
 				alreadyAllocated = false;
 				// check if space inbetween memory[i] and memory[i+neededBlockSize] is available
 				for (int j = 0; j < neededBlockSize; j++) {
