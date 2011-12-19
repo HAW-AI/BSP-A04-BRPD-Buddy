@@ -75,9 +75,10 @@ public class BuddyAlgorithm {
 		i--;
 		
 		if (!alreadyAllocated) {
-			for (int j = i; j < memory.length && j < neededBlockSize ; j++) {
-				memory[j] = objectCounter;
+			for (int j = 0; j < neededBlockSize; j++) {
+				memory[i+j] = objectCounter;
 			}
+
 			objectCounter++;
 			result = objectCounter;
 		}
