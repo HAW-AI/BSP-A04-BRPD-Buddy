@@ -116,13 +116,9 @@ public class BuddyAlgorithm {
 	
 	// http://en.wikipedia.org/wiki/Power_of_two#Algorithm_to_round_up_to_power_of_two
 	private int closestPowerOfTwo(int input) {
-		if (input == 0) {
-			return 0;
-		} else if (input == 1) {
-			return 1;
-		}
+		if (input == 0) return input;
 		int result = 1;
-		while(result <= input) {
+		while(result < input) {
 			result += result;
 		}
 		return result;
