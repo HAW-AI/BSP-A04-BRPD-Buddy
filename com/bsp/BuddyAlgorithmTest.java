@@ -40,10 +40,19 @@ public class BuddyAlgorithmTest {
 		
 		buddy = BuddyAlgorithm.create(128);
 		System.out.println("Allocate 23");
-		int address = buddy.allocate(23);
+		int address1 = buddy.allocate(23);
 		System.out.println(buddy.toString());
-		System.out.println("Free the same Block");
-		buddy.free(address);
+		System.out.println("Free the 23 Block");
+		buddy.free(address1);
+		System.out.println(buddy.toString());
+		System.out.println("Allocate 64");
+		int address2 = buddy.allocate(64);
+		System.out.println(buddy.toString());
+		System.out.println("Allocate 12");
+		int address3 = buddy.allocate(12);
+		System.out.println(buddy.toString());
+		System.out.println("Free the 64 Block");
+		buddy.free(address2);
 		System.out.println(buddy.toString());
 		
 		System.out.println("Reset");
